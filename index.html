@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Olatunji - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+         :root {
+            --bg-primary: #f9fafb;
+            --bg-secondary: #ffffff;
+            --text-primary: #111827;
+            --text-secondary: #6b7280;
+            --accent: #3b82f6;
+            --border: #e5e7eb;
+        }
+        
+        [data-theme="dark"] {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --border: #374151;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        /* Navigation */
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--bg-secondary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+        
+        .nav-link {
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: white;
+            background-color: var(--accent);
+        }
+        
+        .theme-toggle {
+            padding: 0.5rem;
+            border-radius: 9999px;
+            background-color: var(--border);
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        /* Sections */
+        
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 5rem;
+            padding-bottom: 2rem;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        /* Home Section */
+        
+        .hero {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        
+        .profile-image {
+            width: 12rem;
+            height: 12rem;
+            border-radius: 9999px;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            border: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .hero .description {
+            font-size: 1.125rem;
+            max-width: 42rem;
+            margin: 0 auto 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            border: none;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+        /* About Section */
+        
+        .about-content {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-content p {
+            font-size: 1.125rem;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 1rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+        }
+        /* Section Headers */
+        
+        .section-header {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+        /* Achievements */
+        
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .certificate {
+            position: relative;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .cert-image-card {
+            position: relative;
+            display: block;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .cert-image-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .cert-image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .cert-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 2rem 1rem 1rem;
+            color: white;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-image-card:hover .cert-overlay {
+            transform: translateY(0);
+        }
+        
+        .cert-overlay h3 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-overlay p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .certificate-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.3;
+        }
+        
+        .certificate-yellow {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border: 2px solid #f59e0b;
+        }
+        
+        .certificate-blue {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border: 2px solid #3b82f6;
+        }
+        
+        .certificate-green {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border: 2px solid #10b981;
+        }
+        
+        .certificate-purple {
+            background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
+            border: 2px solid #8b5cf6;
+        }
+        
+        .certificate-red {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 2px solid #ef4444;
+        }
+        
+        .certificate-indigo {
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            border: 2px solid #6366f1;
+        }
+        
+        .certificate-inner {
+            position: relative;
+            border: 2px solid;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.6);
+        }
+        
+        .certificate-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certificate-issuer {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .certificate-date {
+            font-size: 0.75rem;
+        }
+        
+        .certificate-badge {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        /* Skills */
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .skill-card {
+            background-color: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+        
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.25rem;
+        }
+        
+        .skill-name {
+            color: var(--text-secondary);
+        }
+        
+        .skill-percentage {
+            font-weight: 600;
+        }
+        
+        .skill-bar {
+            width: 100%;
+            height: 0.5rem;
+            background-color: var(--border);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease;
+        }
+        /* Projects */
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card {
+            background-color: var(--bg-secondary);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+        }
+        /* Contact */
+        
+        .contact-card {
+            background-color: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            text-align: center;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover .contact-icon {
+            transform: scale(1.1);
+        }
+        
+        .contact-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .contact-info {
+            color: var(--text-secondary);
+        }
+        
+        .contact-form {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+        }
+        
+        .form-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--text-primary);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 0.375rem;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+        }
+        /* Footer */
+        
+        .footer {
+            background-color: var(--bg-secondary);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem;
+        }
+        
+        .footer p {
+            color: var(--text-secondary);
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero .subtitle {
+                font-size: 1.25rem;
+            }
+            .section-header {
+                font-size: 2rem;
+            }
+        }
+        /* Certificate Paper Texture */
+        
+        .paper-texture-45 {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+        }
+        
+        .paper-texture-135 {
+            background-image: repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+        }
+        
+        .paper-texture-90 {
+            background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+        }
+        
+        .paper-texture-0 {
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <h1 class="logo">Emmanuel Olatunji</h1>
+                <div class="nav-links">
+                    <button class="nav-link active" data-section="home">Home</button>
+                    <button class="nav-link" data-section="about">About</button>
+                    <button class="nav-link" data-section="achievements">Achievements</button>
+                    <button class="nav-link" data-section="skills">Skills</button>
+                    <button class="nav-link" data-section="projects">Projects</button>
+                    <button class="nav-link" data-section="contact">Contact</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section class="section active" id="home">
+        <div class="container">
+            <div class="hero">
+                <div class="profile-image">
+                    <img src="Emmanuel.png" alt="Emmanuel Olatunji">
+                </div>
+                <h1>Emmanuel Olatunji</h1>
+                <p class="subtitle">Full-Stack Developer & Tech Innovator from Lagos, Nigeria</p>
+                <p class="description">
+                    Building scalable solutions that bridge technology and community development across Africa
+                </p>
+                <button class="btn-primary" onclick="showSection('contact')">Get In Touch</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-header">About Me</h2>
+            <div class="about-content">
+                <p>
+                    I'm Emmanuel Olatunji, a passionate full-stack developer born and raised in the bustling city of Lagos, Nigeria. With over 5 years of experience in software development, I've dedicated my career to creating technology solutions that address real African
+                    challenges.
+                </p>
+                <p>
+                    My journey began at the University of Lagos where I studied Computer Science, and since then, I've worked with startups across Nigeria, Ghana, and Kenya, building everything from fintech platforms to educational technology solutions for underserved communities.
+                </p>
+                <p>
+                    When I'm not coding, you'll find me mentoring young developers through local tech hubs, volunteering at community centers teaching digital literacy, or exploring the vibrant markets of Lagos for inspiration.
+                </p>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">200+</div>
+                        <div class="stat-label">Students Mentored</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="section" id="achievements">
+        <div class="container">
+            <h2 class="section-header">Achievements & Certifications</h2>
+            <div class="certificates-grid">
+                <!-- Certificate 1 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Software Developer">
+                    <div class="cert-overlay">
+                        <h3>Software Development</h3>
+                        <p>Amazon Web Services</p>
+                    </div>
+                </a>
+
+                <!-- Certificate 2 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Google Cloud Engineer">
+                    <div class="cert-overlay">
+                        <h3>Google Cloud Engineer</h3>
+                        <p>Google Cloud Platform</p>
+                    </div>
+                </a>
+
+                <!-- Certificate 3 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Microsoft Azure Expert">
+                    <div class="cert-overlay">
+                        <h3>Microsoft Azure Expert</h3>
+                        <p>Microsoft</p>
+                    </div>
+                </a>
+
+                <!-- Certificate 4 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Data Science Professional">
+                    <div class="cert-overlay">
+                        <h3>Data Science Professional</h3>
+                        <p>IBM</p>
+                    </div>
+                </a>
+
+                <!-- Certificate 5 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Cybersecurity Analyst">
+                    <div class="cert-overlay">
+                        <h3>Cybersecurity Analyst</h3>
+                        <p>CompTIA Security+</p>
+                    </div>
+                </a>
+
+                <!-- Certificate 6 -->
+                <a href="https://imgur.com" target="_blank" class="cert-image-card">
+                    <img src="certificate.png" alt="Project Management Pro">
+                    <div class="cert-overlay">
+                        <h3>Project Management Pro</h3>
+                        <p>PMI</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="container">
+            <h2 class="section-header">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Frontend Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">React.js</span>
+                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">TypeScript</span>
+                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Tailwind CSS</span>
+                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Next.js</span>
+                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Vue.js</span>
+                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Backend Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Node.js</span>
+                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">PostgreSQL</span>
+                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">MongoDB</span>
+                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Redis</span>
+                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Cloud & DevOps</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">AWS</span>
+                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Docker</span>
+                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Kubernetes</span>
+                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">CI/CD</span>
+                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Terraform</span>
+                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Project Management</span>
+                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Team Leadership</span>
+                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Technical Writing</span>
+                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Public Speaking</span>
+                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">Mentoring</span>
+                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="container">
+            <h2 class="section-header">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&h=200&fit=crop" alt="AgriTech Marketplace" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">AgriTech Marketplace</h3>
+                        <p class="project-description">
+                            A digital marketplace connecting Nigerian farmers directly with buyers, reducing middlemen and increasing profits for smallholder farmers.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop" alt="EduReach Platform" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">EduReach Platform</h3>
+                        <p class="project-description">
+                            Online learning platform providing free STEM education to underserved communities across West Africa.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=200&fit=crop" alt="HealthTrack App" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">HealthTrack App</h3>
+                        <p class="project-description">
+                            Mobile health monitoring system helping rural clinics track patient data and manage appointments efficiently.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Twilio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=200&fit=crop" alt="FinTech Wallet" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">FinTech Wallet</h3>
+                        <p class="project-description">
+                            Digital wallet solution for unbanked populations, enabling secure money transfers and savings.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">Redis</span>
+                            <span class="tech-tag">Kubernetes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=400&h=200&fit=crop" alt="Smart Traffic System" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Smart Traffic System</h3>
+                        <p class="project-description">
+                            AI-powered traffic management system reducing congestion in Lagos metropolitan area.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">TensorFlow</span>
+                            <span class="tech-tag">OpenCV</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1565626424178-c699f6601afd?w=400&h=200&fit=crop" alt="Community Radio App" class="project-image">
+                    <div class="project-content">
+                        <h3 class="project-title">Community Radio App</h3>
+                        <p class="project-description">
+                            Streaming platform connecting local radio stations with diaspora communities worldwide.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">WebRTC</span>
+                            <span class="tech-tag">AWS</span>
+                            <span class="tech-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-header">Get In Touch</h2>
+            <div class="contact-card">
+                <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: var(--text-secondary);">
+                    I'm always interested in hearing about new opportunities, collaborations, or just having a good conversation about technology and innovation in Africa.
+                </p>
+
+                <div class="contact-grid">
+                    <a href="mailto:chinwe.okafor@tech.ng" class="contact-item">
+                        <div class="contact-icon" style="color: #3b82f6;"><i class="fas fa-envelope"></i></div>
+                        <h3 class="contact-title">Email</h3>
+                        <p class="contact-info">chinwe.okafor@tech.ng</p>
+                    </a>
+                    <a href="tel:+234802123456" class="contact-item">
+                        <div class="contact-icon" style="color: #22c55e;"><i class="fas fa-phone"></i></div>
+                        <h3 class="contact-title">Phone</h3>
+                        <p class="contact-info">+234 802 123 4567</p>
+                    </a>
+                    <a href="https://maps.google.com/?q=Lagos,Nigeria" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #a855f7;"><i class="fas fa-location-dot"></i></div>
+                        <h3 class="contact-title">Location</h3>
+                        <p class="contact-info">Lagos, Nigeria</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/chinwe-okafor" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #f97316;"><i class="fab fa-linkedin"></i></div>
+                        <h3 class="contact-title">LinkedIn</h3>
+                        <p class="contact-info">/in/chinwe-okafor</p>
+                    </a>
+                    <a href="https://github.com/emmanuelolatunji" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #000000;"><i class="fab fa-github"></i></div>
+                        <h3 class="contact-title">GitHub</h3>
+                        <p class="contact-info">github.com/emmanuelolatunji</p>
+                    </a>
+                    <a href="https://twitter.com/emmanuelolatunji" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #1da1f2;"><i class="fab fa-twitter"></i></div>
+                        <h3 class="contact-title">Twitter</h3>
+                        <p class="contact-info">@emmanuelolatunji</p>
+                    </a>
+                    <a href="https://instagram.com/emmanuelolatunji" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></div>
+                        <h3 class="contact-title">Instagram</h3>
+                        <p class="contact-info">@emmanuelolatunji</p>
+                    </a>
+                    <a href="https://facebook.com/emmanuel.olatunji" target="_blank" class="contact-item">
+                        <div class="contact-icon" style="color: #1877f2;"><i class="fab fa-facebook"></i></div>
+                        <h3 class="contact-title">Facebook</h3>
+                        <p class="contact-info">emmanuel.olatunji</p>
+                    </a>
+                </div>
+
+                <div class="contact-form">
+                    <h3 class="form-title">Or Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message" rows="5" class="form-input" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Emmanuel Olatunji. Built by <strong>Portfolio Kingdom</strong> in Lagos, Nigeria</p>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+        });
+
+        // Section navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.section');
+
+        function showSection(sectionId) {
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            document.getElementById(sectionId).classList.add('active');
+            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const sectionId = e.target.getAttribute('data-section');
+                showSection(sectionId);
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form.');
+            e.target.reset();
+        });
+
+        // Set initial theme
+        html.setAttribute('data-theme', 'light');
+    </script>
+</body>
+
+</html>
