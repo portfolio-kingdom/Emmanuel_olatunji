@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,89 +11,137 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
-         :root {
+
+        :root {
             --bg-primary: #f9fafb;
             --bg-secondary: #ffffff;
+            --bg-card: #f3f4f6;
             --text-primary: #111827;
             --text-secondary: #6b7280;
             --accent: #3b82f6;
+            --accent-hover: #2563eb;
             --border: #e5e7eb;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
-        
+
         [data-theme="dark"] {
             --bg-primary: #111827;
             --bg-secondary: #1f2937;
+            --bg-card: #374151;
             --text-primary: #f9fafb;
             --text-secondary: #9ca3af;
             --border: #374151;
+            --shadow: rgba(0, 0, 0, 0.3);
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             transition: all 0.3s ease;
+            line-height: 1.6;
         }
-        
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
         }
+
         /* Navigation */
-        
         nav {
             position: fixed;
             top: 0;
             width: 100%;
             background-color: var(--bg-secondary);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px var(--shadow);
             z-index: 1000;
             transition: all 0.3s ease;
         }
-        
+
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
+
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: bold;
             color: var(--text-primary);
         }
-        
+
         .nav-links {
             display: none;
-            gap: 1rem;
+            gap: 0.5rem;
         }
-        
+
         @media (min-width: 768px) {
             .nav-links {
                 display: flex;
             }
         }
-        
+
         .nav-link {
             padding: 0.5rem 1rem;
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             background: none;
             border: none;
             cursor: pointer;
             color: var(--text-secondary);
             transition: all 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            text-decoration: none;
         }
-        
+
         .nav-link:hover,
         .nav-link.active {
             color: white;
             background-color: var(--accent);
         }
-        
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+.profile-image {
+    width: fit;
+    height: fit;
+    margin: 0 auto;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px; /* Slight rounded square */
+    
+    /* Bright Border */
+    border: 4px solid #00f0ff;
+
+    /* Glow Effect */
+    box-shadow: 
+        0 0 15px #00f0ff,
+        0 0 30px rgba(0, 240, 255, 0.6);
+
+    transition: 0.4s ease;
+}
+
+/* Hover Effect */
+.profile-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 25px #00f0ff,
+        0 0 50px rgba(0, 240, 255, 0.8);
+}
         .theme-toggle {
             padding: 0.5rem;
             border-radius: 9999px;
@@ -103,62 +150,141 @@
             cursor: pointer;
             font-size: 1.25rem;
             transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        /* Sections */
-        
-        .section {
-            display: none;
-            min-height: 100vh;
-            padding-top: 5rem;
-            padding-bottom: 2rem;
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
         }
-        
-        .section.active {
+
+        .mobile-menu-btn {
             display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
         }
-        /* Home Section */
-        
-        .hero {
+
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding-bottom: 1rem;
+        }
+
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        .mobile-nav .nav-link {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-radius: 0;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 1rem 2rem;
+        }
+
+        .section-header {
             text-align: center;
-            padding: 2rem 0;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
         }
-        
-        .profile-image {
-            width: 12rem;
-            height: 12rem;
-            border-radius: 9999px;
-            margin: 0 auto 2rem;
-            overflow: hidden;
-            border: 4px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+        @media (min-width: 640px) {
+            .section-header {
+                font-size: 2.5rem;
+                margin-bottom: 3rem;
+            }
         }
-        
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        /* Home Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 6rem;
         }
-        
+
+        .hero {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+      
+        .profile-initials {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        @media (min-width: 640px) {
+            .profile-image {
+                width: 12rem;
+                height: 12rem;
+            }
+            .profile-initials {
+                font-size: 5rem;
+            }
+        }
+
         .hero h1 {
-            font-size: 3rem;
+            font-size: 2rem;
             font-weight: bold;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
-        
+
+        @media (min-width: 640px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+
         .hero .subtitle {
-            font-size: 1.5rem;
+            font-size: 1.125rem;
             margin-bottom: 1.5rem;
             color: var(--text-secondary);
         }
-        
+
+        @media (min-width: 640px) {
+            .hero .subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
         .hero .description {
-            font-size: 1.125rem;
+            font-size: 1rem;
             max-width: 42rem;
             margin: 0 auto 2rem;
             color: var(--text-secondary);
         }
-        
+
+        @media (min-width: 640px) {
+            .hero .description {
+                font-size: 1.125rem;
+            }
+        }
+
         .btn-primary {
             background-color: var(--accent);
             color: white;
@@ -169,239 +295,321 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
         }
-        
+
         .btn-primary:hover {
-            background-color: #2563eb;
+            background-color: var(--accent-hover);
             transform: translateY(-2px);
+            box-shadow: 0 10px 20px var(--shadow);
         }
+
         /* About Section */
-        
-        .about-content {
+        #about {
             background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+/* Certificates Section */
+#achievements {
+    padding: 80px 0;
+    background: #f9f9f9;
+}
+
+.section-header {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    font-weight: 700;
+}
+
+/* Grid Layout */
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 0 20px;
+}
+
+/* Certificate Card */
+.cert-image-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.4s ease;
+    display: block;
+}
+
+/* Image */
+.cert-image-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Overlay */
+.cert-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: 0.4s ease;
+    text-align: center;
+}
+
+.cert-overlay i {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: #00bcd4;
+}
+
+.cert-overlay h3 {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.cert-overlay p {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Hover Effects */
+.cert-image-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+}
+
+.cert-image-card:hover img {
+    transform: scale(1.1);
+}
+
+.cert-image-card:hover .cert-overlay {
+    opacity: 1;
+}
+        .about-content {
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .about-content {
+                padding: 2rem;
+            }
+        }
+
         .about-content p {
-            font-size: 1.125rem;
-            line-height: 1.75;
+            font-size: 1rem;
+            line-height: 1.8;
             margin-bottom: 1.5rem;
             color: var(--text-secondary);
         }
-        
+
+        @media (min-width: 640px) {
+            .about-content p {
+                font-size: 1.125rem;
+            }
+        }
+
         .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 2rem;
         }
-        
+
         .stat-card {
             text-align: center;
             padding: 1rem;
         }
-        
+
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: var(--accent);
         }
-        
+
+        @media (min-width: 640px) {
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
         .stat-label {
             color: var(--text-secondary);
+            font-size: 0.875rem;
         }
-        /* Section Headers */
-        
-        .section-header {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            color: var(--text-primary);
+
+        @media (min-width: 640px) {
+            .stat-label {
+                font-size: 1rem;
+            }
         }
+
         /* Achievements */
-        
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
+
+        @media (min-width: 640px) {
+            .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .certificates-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         .certificate {
-            position: relative;
             padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transform: scale(1);
+            border-radius: 1rem;
+            border: 2px solid;
             transition: transform 0.3s ease;
-            overflow: hidden;
+            cursor: pointer;
         }
-        
-        .cert-image-card {
-            position: relative;
-            display: block;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-decoration: none;
-        }
-        
-        .cert-image-card:hover {
+
+        .certificate:hover {
             transform: scale(1.05);
         }
-        
-        .cert-image-card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-        
-        .cert-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 2rem 1rem 1rem;
-            color: white;
-            transform: translateY(30px);
-            transition: transform 0.3s ease;
-        }
-        
-        .cert-image-card:hover .cert-overlay {
-            transform: translateY(0);
-        }
-        
-        .cert-overlay h3 {
-            font-size: 1.125rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-        
-        .cert-overlay p {
-            font-size: 0.875rem;
-            opacity: 0.9;
-        }
-        
-        .certificate-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            opacity: 0.3;
-        }
-        
+
         .certificate-yellow {
             background: linear-gradient(135deg, #fef3c7, #fde68a);
-            border: 2px solid #f59e0b;
+            border-color: #f59e0b;
         }
-        
+
         .certificate-blue {
             background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-            border: 2px solid #3b82f6;
+            border-color: #3b82f6;
         }
-        
+
         .certificate-green {
             background: linear-gradient(135deg, #d1fae5, #a7f3d0);
-            border: 2px solid #10b981;
+            border-color: #10b981;
         }
-        
+
         .certificate-purple {
             background: linear-gradient(135deg, #e9d5ff, #c4b5fd);
-            border: 2px solid #8b5cf6;
+            border-color: #8b5cf6;
         }
-        
+
         .certificate-red {
             background: linear-gradient(135deg, #fee2e2, #fecaca);
-            border: 2px solid #ef4444;
+            border-color: #ef4444;
         }
-        
+
         .certificate-indigo {
             background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
-            border: 2px solid #6366f1;
+            border-color: #6366f1;
         }
-        
+
         .certificate-inner {
-            position: relative;
-            border: 2px solid;
-            border-radius: 0.375rem;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        
+
+        .certificate-icon {
+            font-size: 3rem;
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
         .certificate-title {
             font-size: 1.125rem;
             font-weight: bold;
+            color: #1f2937;
             margin-bottom: 0.5rem;
         }
-        
+
         .certificate-issuer {
             font-size: 0.875rem;
-            margin-bottom: 0.5rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
         }
-        
-        .certificate-date {
-            font-size: 0.75rem;
-        }
-        
-        .certificate-badge {
-            text-align: center;
-            margin-top: 1rem;
-        }
-        
+
         .badge {
             display: inline-block;
             padding: 0.25rem 0.75rem;
             border-radius: 9999px;
+            background-color: var(--accent);
             color: white;
             font-size: 0.75rem;
             font-weight: bold;
         }
+
         /* Skills */
-        
+        #skills {
+            background-color: var(--bg-secondary);
+        }
+
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
+
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .skill-card {
-            background-color: var(--bg-secondary);
+            background-color: var(--bg-card);
             padding: 1.5rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px var(--shadow);
         }
-        
+
         .skill-card h3 {
             font-size: 1.25rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        
+
         .skill-item {
             margin-bottom: 1rem;
         }
-        
+
         .skill-header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
-        
+
         .skill-name {
             color: var(--text-secondary);
         }
-        
+
         .skill-percentage {
             font-weight: 600;
         }
-        
+
         .skill-bar {
             width: 100%;
             height: 0.5rem;
@@ -409,244 +617,369 @@
             border-radius: 9999px;
             overflow: hidden;
         }
-        
+
         .skill-progress {
             height: 100%;
             border-radius: 9999px;
-            transition: width 0.5s ease;
+            transition: width 1s ease;
         }
+
         /* Projects */
-        
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        
+
+        @media (min-width: 640px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         .project-card {
             background-color: var(--bg-secondary);
-            border-radius: 0.5rem;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transform: scale(1);
-            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .project-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
         }
-        
+
         .project-image {
             width: 100%;
             height: 12rem;
             object-fit: cover;
         }
-        
+
         .project-content {
             padding: 1.5rem;
         }
-        
+
         .project-title {
             font-size: 1.25rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             color: var(--text-primary);
         }
-        
+
         .project-description {
             color: var(--text-secondary);
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
-        
+
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-        
+
         .tech-tag {
             background-color: var(--accent);
             color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.375rem;
             font-size: 0.75rem;
         }
+
         /* Contact */
-        
-        .contact-card {
+        #contact {
             background-color: var(--bg-secondary);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
+        .contact-intro {
+            text-align: center;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 640px) {
+            .contact-intro {
+                font-size: 1.125rem;
+            }
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 640px) {
+            .contact-card {
+                padding: 2rem;
+            }
+        }
+
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
             margin-bottom: 2rem;
         }
-        
+
+        @media (min-width: 640px) {
+            .contact-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
         .contact-item {
             text-align: center;
             text-decoration: none;
             color: inherit;
             display: block;
+            padding: 1rem 0.5rem;
             transition: transform 0.3s ease;
+            border-radius: 0.5rem;
         }
-        
+
         .contact-item:hover {
             transform: translateY(-5px);
+            background-color: var(--bg-secondary);
         }
-        
+
         .contact-icon {
-            width: 4rem;
-            height: 4rem;
+            width: 3.5rem;
+            height: 3.5rem;
             border-radius: 9999px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
-            font-size: 1.5rem;
+            margin: 0 auto 0.75rem;
+            font-size: 1.25rem;
+            background-color: var(--bg-secondary);
+            box-shadow: 0 2px 10px var(--shadow);
             transition: all 0.3s ease;
         }
-        
+
+        @media (min-width: 640px) {
+            .contact-icon {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.5rem;
+            }
+        }
+
         .contact-item:hover .contact-icon {
             transform: scale(1.1);
         }
-        
+
         .contact-title {
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.25rem;
             color: var(--text-primary);
+            font-size: 0.9rem;
         }
-        
+
+        @media (min-width: 640px) {
+            .contact-title {
+                font-size: 1rem;
+            }
+        }
+
         .contact-info {
             color: var(--text-secondary);
+            font-size: 0.75rem;
+            word-break: break-word;
         }
-        
+
+        @media (min-width: 640px) {
+            .contact-info {
+                font-size: 0.875rem;
+            }
+        }
+
         .contact-form {
             border-top: 1px solid var(--border);
             padding-top: 2rem;
         }
-        
+
         .form-title {
             font-size: 1.25rem;
             font-weight: bold;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             color: var(--text-primary);
         }
-        
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .form-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .form-group {
             margin-bottom: 1rem;
         }
-        
+
         .form-input {
             width: 100%;
-            padding: 0.75rem;
+            padding: 0.75rem 1rem;
             border: 1px solid var(--border);
-            border-radius: 0.375rem;
+            border-radius: 0.5rem;
             background-color: var(--bg-secondary);
             color: var(--text-primary);
+            font-size: 1rem;
             transition: all 0.3s ease;
         }
-        
+
         .form-input:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
         }
-        /* Footer */
-        
-        .footer {
-            background-color: var(--bg-secondary);
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            margin-top: 3rem;
-        }
-        
-        .footer p {
+
+        .form-input::placeholder {
             color: var(--text-secondary);
         }
-        /* Responsive */
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero .subtitle {
-                font-size: 1.25rem;
-            }
-            .section-header {
-                font-size: 2rem;
-            }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 120px;
         }
-        /* Certificate Paper Texture */
-        
-        .paper-texture-45 {
-            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+
+        .btn-full {
+            width: 100%;
         }
-        
-        .paper-texture-135 {
-            background-image: repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-card);
+            padding: 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
         }
-        
-        .paper-texture-90 {
-            background-image: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
         }
-        
-        .paper-texture-0 {
-            background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(255, 255, 255, 0.5) 10px, rgba(255, 255, 255, 0.5) 20px);
+
+        .social-link {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Color classes */
+        .text-blue { color: #3b82f6; }
+        .text-green { color: #22c55e; }
+        .text-purple { color: #a855f7; }
+        .text-orange { color: #f97316; }
+        .text-sky { color: #0ea5e9; }
+        .text-pink { color: #ec4899; }
+
+        .bg-blue { background-color: #3b82f6; }
+        .bg-green { background-color: #22c55e; }
+        .bg-purple { background-color: #a855f7; }
+        .bg-orange { background-color: #f97316; }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fadeIn {
+            animation: fadeIn 0.6s ease forwards;
         }
     </style>
 </head>
-
 <body data-theme="light">
     <!-- Navigation -->
     <nav>
-        <div class="container">
-            <div class="nav-container">
-                <h1 class="logo">Emmanuel Olatunji</h1>
-                <div class="nav-links">
-                    <button class="nav-link active" data-section="home">Home</button>
-                    <button class="nav-link" data-section="about">About</button>
-                    <button class="nav-link" data-section="achievements">Achievements</button>
-                    <button class="nav-link" data-section="skills">Skills</button>
-                    <button class="nav-link" data-section="projects">Projects</button>
-                    <button class="nav-link" data-section="contact">Contact</button>
-                </div>
-                <button class="theme-toggle" id="themeToggle">🌙</button>
+        <div class="nav-container">
+            <h1 class="logo">Emmanuel Olatunji</h1>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#achievements" class="nav-link">Achievements</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#achievements" class="nav-link">Achievements</a>
+            <a href="#skills" class="nav-link">Skills</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 
     <!-- Home Section -->
-    <section class="section active" id="home">
+    <section id="home">
         <div class="container">
             <div class="hero">
-                <div class="profile-image">
-                    <img src="Emmanuel.png" alt="Emmanuel Olatunji">
-                </div>
+   <div class="profile-image">
+    <img src="Emmanuel.png" alt="Emmanuel">
+</div>
                 <h1>Emmanuel Olatunji</h1>
                 <p class="subtitle">Full-Stack Developer & Tech Innovator from Lagos, Nigeria</p>
                 <p class="description">
                     Building scalable solutions that bridge technology and community development across Africa
                 </p>
-                <button class="btn-primary" onclick="showSection('contact')">Get In Touch</button>
+                <a href="#contact" class="btn-primary">Get In Touch</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="section" id="about">
+    <section id="about">
         <div class="container">
             <h2 class="section-header">About Me</h2>
             <div class="about-content">
                 <p>
-                    I'm Emmanuel Olatunji, a passionate full-stack developer born and raised in the bustling city of Lagos, Nigeria. With over 5 years of experience in software development, I've dedicated my career to creating technology solutions that address real African
-                    challenges.
+                    I'm Emmanuel Olatunji, a passionate full-stack developer born and raised in the bustling city of Lagos, Nigeria. With over 5 years of experience in software development, I've dedicated my career to creating technology solutions that address real African challenges.
                 </p>
                 <p>
                     My journey began at the University of Lagos where I studied Computer Science, and since then, I've worked with startups across Nigeria, Ghana, and Kenya, building everything from fintech platforms to educational technology solutions for underserved communities.
@@ -672,265 +1005,274 @@
         </div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="section" id="achievements">
-        <div class="container">
-            <h2 class="section-header">Achievements & Certifications</h2>
-            <div class="certificates-grid">
-                <!-- Certificate 1 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Software Developer">
-                    <div class="cert-overlay">
-                        <h3>Software Development</h3>
-                        <p>Amazon Web Services</p>
-                    </div>
-                </a>
+   <section id="achievements">
+    <h2 class="section-header">Achievements & Certifications</h2>
 
-                <!-- Certificate 2 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Google Cloud Engineer">
-                    <div class="cert-overlay">
-                        <h3>Google Cloud Engineer</h3>
-                        <p>Google Cloud Platform</p>
-                    </div>
-                </a>
+    <div class="certificates-grid">
 
-                <!-- Certificate 3 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Microsoft Azure Expert">
-                    <div class="cert-overlay">
-                        <h3>Microsoft Azure Expert</h3>
-                        <p>Microsoft</p>
-                    </div>
-                </a>
-
-                <!-- Certificate 4 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Data Science Professional">
-                    <div class="cert-overlay">
-                        <h3>Data Science Professional</h3>
-                        <p>IBM</p>
-                    </div>
-                </a>
-
-                <!-- Certificate 5 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Cybersecurity Analyst">
-                    <div class="cert-overlay">
-                        <h3>Cybersecurity Analyst</h3>
-                        <p>CompTIA Security+</p>
-                    </div>
-                </a>
-
-                <!-- Certificate 6 -->
-                <a href="https://imgur.com" target="_blank" class="cert-image-card">
-                    <img src="certificate.png" alt="Project Management Pro">
-                    <div class="cert-overlay">
-                        <h3>Project Management Pro</h3>
-                        <p>PMI</p>
-                    </div>
-                </a>
+        <!-- AWS -->
+        <a href="images/aws-certificate.ng" target="_blank" class="cert-image-card">
+            <img src="certificate.png" alt="AWS Certificate">
+            <div class="cert-overlay">
+                <i class="fa-brands fa-aws"></i>
+                <h3>Software Development</h3>
+                <p>Amazon Web Services</p>
             </div>
-        </div>
-    </section>
+        </a>
 
+        <!-- Google Cloud -->
+        <a href="images/google-cloud.jpg" target="_blank" class="cert-image-card">
+            <img src="certificate.png" alt="Google Cloud Certificate">
+            <div class="cert-overlay">
+                <i class="fa-brands fa-google"></i>
+                <h3>Google Cloud Engineer</h3>
+                <p>Google Cloud Platform</p>
+            </div>
+        </a>
+
+        <!-- Microsoft -->
+        <a href="images/azure-expert.jpg" target="_blank" class="cert-image-card">
+            <img src="certificate.png" alt="Azure Certificate">
+            <div class="cert-overlay">
+                <i class="fa-brands fa-microsoft"></i>
+                <h3>Microsoft Azure Expert</h3>
+                <p>Microsoft</p>
+            </div>
+        </a>
+
+        <!-- Data Science -->
+        <a href="images/data-science.jpg" target="_blank" class="cert-image-card">
+            <img src="certificate.png" alt="Data Science Certificate">
+            <div class="cert-overlay">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Data Science Professional</h3>
+                <p>IBM</p>
+            </div>
+        </a>
+
+        <!-- Cybersecurity -->
+        <a href="certificate.png" target="_blank" class="cert-image-card">
+            <img src="certificate.png"alt="Cybersecurity Certificate">
+            <div class="cert-overlay">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Cybersecurity Analyst</h3>
+                <p>CompTIA Security+</p>
+            </div>
+        </a>
+
+        <!-- Project Management -->
+        <a href="images/project-management.jpg" target="_blank" class="cert-image-card">
+            <img src="certificate.png"alt="Project Management Certificate">
+            <div class="cert-overlay">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Project Management Pro</h3>
+                <p>PMI</p>
+            </div>
+        </a>
+
+    </div>
+</section>
     <!-- Skills Section -->
-    <section class="section" id="skills">
+    <section id="skills">
         <div class="container">
             <h2 class="section-header">Technical Skills</h2>
             <div class="skills-grid">
+                <!-- Frontend Skills -->
                 <div class="skill-card">
-                    <h3>Frontend Development</h3>
+                    <h3><i class="fas fa-laptop-code text-blue"></i> Frontend Development</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">React.js</span>
-                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                            <span class="skill-percentage text-blue">95%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                            <div class="skill-progress bg-blue" style="width: 95%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">TypeScript</span>
-                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                            <span class="skill-percentage text-blue">90%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                            <div class="skill-progress bg-blue" style="width: 90%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Tailwind CSS</span>
-                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                            <span class="skill-percentage text-blue">92%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                            <div class="skill-progress bg-blue" style="width: 92%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Next.js</span>
-                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                            <span class="skill-percentage text-blue">88%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                            <div class="skill-progress bg-blue" style="width: 88%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Vue.js</span>
-                            <span class="skill-percentage" style="color: #3b82f6;">95%</span>
+                            <span class="skill-percentage text-blue">80%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #3b82f6; width: 95%;"></div>
+                            <div class="skill-progress bg-blue" style="width: 80%;"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Backend Skills -->
                 <div class="skill-card">
-                    <h3>Backend Development</h3>
+                    <h3><i class="fas fa-server text-green"></i> Backend Development</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Node.js</span>
-                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                            <span class="skill-percentage text-green">90%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                            <div class="skill-progress bg-green" style="width: 90%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Python</span>
-                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                            <span class="skill-percentage text-green">85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                            <div class="skill-progress bg-green" style="width: 85%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">PostgreSQL</span>
-                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                            <span class="skill-percentage text-green">88%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                            <div class="skill-progress bg-green" style="width: 88%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">MongoDB</span>
-                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                            <span class="skill-percentage text-green">85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                            <div class="skill-progress bg-green" style="width: 85%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Redis</span>
-                            <span class="skill-percentage" style="color: #22c55e;">90%</span>
+                            <span class="skill-percentage text-green">78%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #22c55e; width: 90%;"></div>
+                            <div class="skill-progress bg-green" style="width: 78%;"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Cloud Skills -->
                 <div class="skill-card">
-                    <h3>Cloud & DevOps</h3>
+                    <h3><i class="fas fa-cloud text-purple"></i> Cloud & DevOps</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">AWS</span>
-                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                            <span class="skill-percentage text-purple">85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                            <div class="skill-progress bg-purple" style="width: 85%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Docker</span>
-                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                            <span class="skill-percentage text-purple">88%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                            <div class="skill-progress bg-purple" style="width: 88%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Kubernetes</span>
-                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                            <span class="skill-percentage text-purple">75%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                            <div class="skill-progress bg-purple" style="width: 75%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">CI/CD</span>
-                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                            <span class="skill-percentage text-purple">82%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                            <div class="skill-progress bg-purple" style="width: 82%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Terraform</span>
-                            <span class="skill-percentage" style="color: #a855f7;">85%</span>
+                            <span class="skill-percentage text-purple">70%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #a855f7; width: 85%;"></div>
+                            <div class="skill-progress bg-purple" style="width: 70%;"></div>
                         </div>
                     </div>
                 </div>
 
+                <!-- Soft Skills -->
                 <div class="skill-card">
-                    <h3>Soft Skills</h3>
+                    <h3><i class="fas fa-users text-orange"></i> Soft Skills</h3>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Project Management</span>
-                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                            <span class="skill-percentage text-orange">92%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                            <div class="skill-progress bg-orange" style="width: 92%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Team Leadership</span>
-                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                            <span class="skill-percentage text-orange">88%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                            <div class="skill-progress bg-orange" style="width: 88%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Technical Writing</span>
-                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                            <span class="skill-percentage text-orange">85%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                            <div class="skill-progress bg-orange" style="width: 85%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Public Speaking</span>
-                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                            <span class="skill-percentage text-orange">80%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                            <div class="skill-progress bg-orange" style="width: 80%;"></div>
                         </div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-header">
                             <span class="skill-name">Mentoring</span>
-                            <span class="skill-percentage" style="color: #f97316;">92%</span>
+                            <span class="skill-percentage text-orange">95%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="background-color: #f97316; width: 92%;"></div>
+                            <div class="skill-progress bg-orange" style="width: 95%;"></div>
                         </div>
                     </div>
                 </div>
@@ -939,7 +1281,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="section" id="projects">
+    <section id="projects">
         <div class="container">
             <h2 class="section-header">Featured Projects</h2>
             <div class="projects-grid">
@@ -1042,134 +1384,184 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section" id="contact">
+    <section id="contact">
         <div class="container">
             <h2 class="section-header">Get In Touch</h2>
+            <p class="contact-intro">
+                I'm always interested in hearing about new opportunities, collaborations, or just having a good conversation about technology and innovation in Africa.
+            </p>
             <div class="contact-card">
-                <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem; color: var(--text-secondary);">
-                    I'm always interested in hearing about new opportunities, collaborations, or just having a good conversation about technology and innovation in Africa.
-                </p>
-
                 <div class="contact-grid">
-                    <a href="mailto:chinwe.okafor@tech.ng" class="contact-item">
-                        <div class="contact-icon" style="color: #3b82f6;"><i class="fas fa-envelope"></i></div>
+                    <a href="mailto:emmanuel.olatunji@tech.ng" class="contact-item">
+                        <div class="contact-icon text-blue"><i class="fas fa-envelope"></i></div>
                         <h3 class="contact-title">Email</h3>
-                        <p class="contact-info">chinwe.okafor@tech.ng</p>
+                        <p class="contact-info">emmanuel.olatunji@tech.ng</p>
                     </a>
-                    <a href="tel:+234802123456" class="contact-item">
-                        <div class="contact-icon" style="color: #22c55e;"><i class="fas fa-phone"></i></div>
+                    <a href="tel:+2348021234567" class="contact-item">
+                        <div class="contact-icon text-green"><i class="fas fa-phone"></i></div>
                         <h3 class="contact-title">Phone</h3>
                         <p class="contact-info">+234 802 123 4567</p>
                     </a>
                     <a href="https://maps.google.com/?q=Lagos,Nigeria" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #a855f7;"><i class="fas fa-location-dot"></i></div>
+                        <div class="contact-icon text-purple"><i class="fas fa-location-dot"></i></div>
                         <h3 class="contact-title">Location</h3>
                         <p class="contact-info">Lagos, Nigeria</p>
                     </a>
-                    <a href="https://www.linkedin.com/in/chinwe-okafor" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #f97316;"><i class="fab fa-linkedin"></i></div>
+                    <a href="https://www.linkedin.com/in/emmanuel-olatunji" target="_blank" class="contact-item">
+                        <div class="contact-icon text-blue"><i class="fab fa-linkedin"></i></div>
                         <h3 class="contact-title">LinkedIn</h3>
-                        <p class="contact-info">/in/chinwe-okafor</p>
+                        <p class="contact-info">/in/emmanuel-olatunji</p>
                     </a>
                     <a href="https://github.com/emmanuelolatunji" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #000000;"><i class="fab fa-github"></i></div>
+                        <div class="contact-icon"><i class="fab fa-github"></i></div>
                         <h3 class="contact-title">GitHub</h3>
-                        <p class="contact-info">github.com/emmanuelolatunji</p>
+                        <p class="contact-info">emmanuelolatunji</p>
                     </a>
                     <a href="https://twitter.com/emmanuelolatunji" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #1da1f2;"><i class="fab fa-twitter"></i></div>
+                        <div class="contact-icon text-sky"><i class="fab fa-twitter"></i></div>
                         <h3 class="contact-title">Twitter</h3>
                         <p class="contact-info">@emmanuelolatunji</p>
                     </a>
-                    <a href="https://instagram.com/emmanuelolatunji" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #e1306c;"><i class="fab fa-instagram"></i></div>
-                        <h3 class="contact-title">Instagram</h3>
-                        <p class="contact-info">@emmanuelolatunji</p>
-                    </a>
-                    <a href="https://facebook.com/emmanuel.olatunji" target="_blank" class="contact-item">
-                        <div class="contact-icon" style="color: #1877f2;"><i class="fab fa-facebook"></i></div>
-                        <h3 class="contact-title">Facebook</h3>
-                        <p class="contact-info">emmanuel.olatunji</p>
-                    </a>
                 </div>
+<div class="contact-form">
+    <h3 class="form-title">Or Send Me a Message</h3>
 
-                <div class="contact-form">
-                    <h3 class="form-title">Or Send Me a Message</h3>
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" placeholder="Your Name" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" placeholder="Your Email" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" class="form-input" required></textarea>
-                        </div>
-                        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
+    <form action="https://formsubmit.co/profitguru74@gmail.com" method="POST">
+
+        <div class="form-row">
+            <input type="text" name="name" placeholder="Your Name" class="form-input" required>
+            <input type="email" name="email" placeholder="Your Email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <input type="text" name="subject" placeholder="Subject" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+            <textarea name="message" placeholder="Your Message" rows="5" class="form-input" required></textarea>
+        </div>
+
+        <!-- Optional Hidden Fields -->
+        <input type="hidden" name="_subject" value="New Portfolio Message">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit" class="btn-primary btn-full">Send Message</button>
+
+    </form>
+</div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer>
         <div class="container">
-            <p>© 2024 Emmanuel Olatunji. Built by <strong>Portfolio Kingdom</strong> in Lagos, Nigeria</p>
+            <div class="social-links">
+                <a href="https://github.com/emmanuelolatunji" target="_blank" class="social-link" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/emmanuel-olatunji" target="_blank" class="social-link" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://twitter.com/emmanuelolatunji" target="_blank" class="social-link" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com/emmanuelolatunji" target="_blank" class="social-link" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p class="footer-text">© 2024 Emmanuel Olatunji. Built in <strong>Portfolio Kingdom</strong>in Lagos, Nigeria</p>
         </div>
     </footer>
 
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
-        const html = document.documentElement;
+        const body = document.body;
 
         themeToggle.addEventListener('click', () => {
-            const currentTheme = html.getAttribute('data-theme');
+            const currentTheme = body.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            html.setAttribute('data-theme', newTheme);
+            body.setAttribute('data-theme', newTheme);
             themeToggle.textContent = newTheme === 'light' ? '🌙' : '☀️';
+            localStorage.setItem('theme', newTheme);
         });
 
-        // Section navigation
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.section');
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'light' ? '🌙' : '☀️';
 
-        function showSection(sectionId) {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('open');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            });
+        });
+
+        // Active navigation link on scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links .nav-link, .mobile-nav .nav-link');
+
+        function updateActiveLink() {
+            let current = '';
+            const scrollPosition = window.scrollY + 100;
+
             sections.forEach(section => {
-                section.classList.remove('active');
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-            });
-
-            document.getElementById(sectionId).classList.add('active');
-            document.querySelector(`[data-section="${sectionId}"]`).classList.add('active');
-
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
             });
         }
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const sectionId = e.target.getAttribute('data-section');
-                showSection(sectionId);
-            });
-        });
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
 
-        // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo form.');
-            e.target.reset();
-        });
 
-        // Set initial theme
-        html.setAttribute('data-theme', 'light');
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const skillsSection = document.getElementById('skills');
+
+        function animateSkillBars() {
+            const sectionTop = skillsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (sectionTop < windowHeight * 0.8) {
+                skillBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 100);
+                });
+                window.removeEventListener('scroll', animateSkillBars);
+            }
+        }
+
+        window.addEventListener('scroll', animateSkillBars);
     </script>
 </body>
-
 </html>
